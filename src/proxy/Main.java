@@ -5,8 +5,12 @@ package proxy;
  */
 public class Main {
     public static void main(String[] args) {
-        Subject subject = new Proxy();
-        subject.request();
-
+//        Subject subject = new Proxy();
+//        subject.request();
+        Subject subject = new RealSubject();
+        System.out.println("目标对象：" + subject.getClass());
+        Subject proxy = (Subject) new ProxyFactory(subject).getProxyInstance();
+        System.out.println("代理对象：" + proxy.getClass());
+        proxy.request();
     }
 }
